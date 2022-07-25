@@ -73,17 +73,16 @@ def caesar_cipher(message, shift):
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     new_word = ""
     
-    for i in range(len(message)):
-        for j in range(len(alphabet)): 
-            if message[i] == alphabet[j]: # Checks position of each letter of the message in the alphabet
-                shifted_position = j + shift
-                new_word += alphabet[shifted_position % 26]
-            elif message[i] == " ":
-                new_word += " "
-            else:
-                continue
-       
-    return new_word      
+    for i in range(len(message)): # Goes over each letter of the message
+        if message[i] == " ":
+            new_word += " "
+        else:
+            for j in range(len(alphabet)): 
+                if message[i] == alphabet[j]: # Checks position of each letter of the message in the alphabet
+                    shifted_position = j + shift 
+                    new_word += alphabet[shifted_position % 26] # Index on the alphabet stays at 0-25 even if shifted position > 26
+           
+    return new_word    
                    
 
 def shift_by_letter(letter, letter_shift):
